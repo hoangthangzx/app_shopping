@@ -1,6 +1,7 @@
 package com.example.appshopping.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkInfo;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -67,11 +69,44 @@ sanphammoiadt sanphammoiadt;
         ActionViewFlippe();
         getloaisp();
         getspmoi();
+        getEventClick();
         if(isconected(this)){
             Toast.makeText(getApplicationContext(),"kn",Toast.LENGTH_LONG).show();
         }else {
 Toast.makeText(getApplicationContext(),"no iternet",Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void getEventClick() {
+        ListViewmhc.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view , int i,long l){
+                switch (i){
+                    case 0:
+                        Intent trangchu = new Intent( getApplicationContext(), MainActivity.class);
+                        startActivity(trangchu);
+                        break;
+                    case 1:
+                        Intent dienthoai = new Intent( getApplicationContext(), dienthoaiActivity.class);
+                       dienthoai.putExtra("loai",1);
+                        startActivity(dienthoai);
+                        break;
+                    case 2:
+                        Intent laptop = new Intent( getApplicationContext(), laptopActivity.class);
+                        startActivity(laptop);
+                        break;
+                    case 3:
+                        Intent lienhe = new Intent( getApplicationContext(), lienheActivity.class);
+                        startActivity(lienhe);
+                        break;
+                    case 4:
+                        Intent thongtin = new Intent( getApplicationContext(), thongtinActivity.class);
+                        startActivity(thongtin);
+                        break;
+                }
+            }
+
+        });
     }
 
     private void getspmoi() {
