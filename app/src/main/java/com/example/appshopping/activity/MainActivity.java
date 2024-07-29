@@ -18,6 +18,7 @@ import android.widget.ViewFlipper;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.core.motion.utils.Utils;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -32,6 +33,9 @@ import com.example.appshopping.adapter.sanphammoiadt;
 import com.example.appshopping.model.loaisp;
 import com.example.appshopping.model.sanphammoi;
 import com.example.appshopping.model.sanphammoiModel;
+
+
+
 import com.example.appshopping.utils.untils;
 import com.google.android.material.navigation.NavigationView;
 
@@ -92,7 +96,8 @@ Toast.makeText(getApplicationContext(),"no iternet",Toast.LENGTH_LONG).show();
                         startActivity(dienthoai);
                         break;
                     case 2:
-                        Intent laptop = new Intent( getApplicationContext(), laptopActivity.class);
+                        Intent laptop = new Intent( getApplicationContext(), dienthoaiActivity.class);
+                        laptop.putExtra("loai",2);
                         startActivity(laptop);
                         break;
                     case 3:
@@ -191,6 +196,9 @@ ViewFlippermhc.setFlipInterval(3000);
         DrawerLayoutmhc = findViewById((R.id.DrawerLayoutmhc));
         mangloaisp = new ArrayList<>();
         mangspmoi = new ArrayList<>();
+        if(untils.manggiohang== null){
+           untils.manggiohang= new ArrayList<>();
+        }
     }
     private boolean isconected (Context context){
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService((Context.CONNECTIVITY_SERVICE));
